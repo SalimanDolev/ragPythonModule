@@ -8,10 +8,5 @@ google-generativeai==0.3.2
 # Configuration management
 python-dotenv==1.0.0
 
-# PostgreSQL database with pgvector extension
+# PostgreSQL database
 psycopg2-binary==2.9.7
-pgvector==0.2.3
-
-# Data processing and utilities
-numpy==1.24.3
-tiktoken==0.5.2
