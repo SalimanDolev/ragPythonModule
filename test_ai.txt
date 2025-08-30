@@ -1,1 +1,0 @@
-This is a test document about artificial intelligence and machine learning. AI has revolutionized many industries including healthcare, finance, and transportation. Machine learning algorithms can process vast amounts of data to identify patterns and make predictions. Deep learning, a subset of ML, uses neural networks to solve complex problems.
