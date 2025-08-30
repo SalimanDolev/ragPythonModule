@@ -1,5 +1,6 @@
 # RAG Python Module with Gemini API and PostgreSQL
 
+<<<<<<< Updated upstream
 A Python module for implementing Retrieval-Augmented Generation (RAG) that allows you to index PDF and DOCX documents and search through them using semantic similarity. **Now powered by Google Gemini API for high-quality embeddings and PostgreSQL with pgvector for scalable vector storage!**
 
 > **🎯 Recommended Usage**: Use `python main.py --interactive` for the best user experience with guided menus and chunking strategy selection!
@@ -33,6 +34,44 @@ pip install -r requirements.txt
 
 3. Set up PostgreSQL with pgvector extension (see setup instructions below)
 4. Set up your configuration:
+=======
+A powerful **Retrieval Augmented Generation (RAG)** system that combines Google's Gemini AI with PostgreSQL and pgvector for efficient document indexing and semantic search. Supports multiple text chunking strategies and provides both CLI and programmatic interfaces.
+
+## 🚀 **Quick Start (Recommended)**
+
+For the best user experience, use the interactive mode:
+
+```bash
+python main.py --interactive
+```
+
+This will guide you through:
+- System requirements check
+- Document indexing with chunking strategy selection
+- Interactive search queries
+- File management
+
+## 📋 **Prerequisites**
+
+- **Python 3.8+**
+- **PostgreSQL 12+** with **pgvector** extension
+- **Google Gemini API** key
+- **PDF and DOCX** processing libraries
+
+## 🔧 **Installation & Setup**
+
+### 1. **Clone and Install Dependencies**
+```bash
+git clone <your-repo>
+cd ragPythonModule
+pip install -r requirements.txt
+```
+
+### 2. **Environment Configuration**
+```bash
+# Copy the template
+cp env_template.env .env
+>>>>>>> Stashed changes
 
 ```bash
 # Copy the example configuration file
@@ -42,6 +81,7 @@ cp env.example .env
 nano .env
 ```
 
+<<<<<<< Updated upstream
 ## PostgreSQL Setup
 
 ### 1. Install PostgreSQL
@@ -216,17 +256,63 @@ python search_documents.py "neural networks" --source "document.pdf"
 The `main.py` script is now the **primary entry point** for all RAG operations, providing a unified interface for indexing, searching, and managing documents.
 
 ### Quick Start
+=======
+**Required Environment Variables:**
+```bash
+# Google Gemini API (REQUIRED)
+GOOGLE_API_KEY=your_actual_api_key_here
+
+# PostgreSQL Database (REQUIRED)
+POSTGRES_HOST=localhost
+POSTGRES_DB=your_database_name
+POSTGRES_USER=your_username
+POSTGRES_PASSWORD=your_secure_password
+
+# Optional: Customize defaults
+VECTOR_DIMENSION=768
+DEFAULT_CHUNK_SIZE=1000
+DEFAULT_OVERLAP=200
+```
+
+### 3. **Database Setup**
+```sql
+-- Create database
+CREATE DATABASE your_database_name;
+
+-- Enable pgvector extension
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- The table will be created automatically on first run
+```
+
+### 4. **Verify Installation**
+```bash
+python main.py --check-system
+```
+
+## 🎯 **Main CLI Application (`main.py`)**
+
+### **Quick Start Guide**
+```bash
+# Interactive mode (recommended)
+python main.py --interactive
+>>>>>>> Stashed changes
 
 ```bash
 # Check if your system is ready
 python main.py --check-system
 
 # Index a document
+<<<<<<< Updated upstream
 python main.py document.pdf
+=======
+python main.py --index path/to/document.pdf --chunk-strategy sentence
+>>>>>>> Stashed changes
 
 # Search documents
 python main.py --search "your query here"
 
+<<<<<<< Updated upstream
 # List all indexed files
 python main.py --list-files
 
@@ -274,9 +360,43 @@ This provides a guided interface where you can:
 3. **Index documents** with your chosen strategy
 4. **Search content** easily
 5. **Manage files** through simple menus
+=======
+# List indexed files
+python main.py --list-files
 
-### Chunking Strategy Guide
+# Delete file embeddings
+python main.py --delete-file filename.pdf
+```
 
+### **Available Commands**
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `--check-system` | Verify all requirements | `python main.py --check-system` |
+| `--interactive` | Interactive menu mode | `python main.py --interactive` |
+| `--index <file>` | Index a document | `python main.py --index doc.pdf` |
+| `--search <query>` | Search documents | `python main.py --search "AI"` |
+| `--list-files` | Show indexed files | `python main.py --list-files` |
+| `--delete-file <file>` | Remove file embeddings | `python main.py --delete-file doc.pdf` |
+
+### **Interactive Mode Features**
+
+The `--interactive` flag provides a guided experience:
+
+1. **System Check**: Automatic verification of all requirements
+2. **Document Indexing**: 
+   - File selection
+   - Chunking strategy choice
+   - Progress tracking
+3. **Search Interface**: Interactive query input with result display
+4. **File Management**: View and delete indexed documents
+
+### **Chunking Strategy Guide**
+>>>>>>> Stashed changes
+
+Choose from three text chunking strategies:
+
+<<<<<<< Updated upstream
 #### **Fixed-Size Chunks** (Default)
 - **Best for**: General purpose, consistent chunk sizes
 - **Use when**: You want predictable chunk sizes and need overlap for context
@@ -351,6 +471,214 @@ db_manager.delete_file_embeddings("document.pdf")
 The main class for indexing documents using Gemini embeddings and PostgreSQL.
 
 #### Methods
+=======
+1. **Fixed-size with Overlaps** (`--chunk-strategy fixed-size`)
+   - Uses `--chunk-size` and `--overlap` parameters
+   - Good for consistent chunk sizes
+   - Example: `--chunk-size 1000 --overlap 200`
+
+2. **Sentence-based Splitting** (`--chunk-strategy sentence`)
+   - Automatically splits by sentence boundaries
+   - No size limits - natural sentence chunks
+   - Preserves semantic meaning
+
+3. **Paragraph-based Splitting** (`--chunk-strategy paragraph`)
+   - Automatically splits by paragraph boundaries
+   - No size limits - natural paragraph chunks
+   - Maintains document structure
+
+## 🏗️ **Architecture**
+
+### **Core Components**
+
+- **`main.py`**: Main CLI application and interactive interface
+- **`index_documents.py`**: Document processing and chunking
+- **`search_documents.py`**: Semantic search using Gemini embeddings
+- **`database.py`**: PostgreSQL database operations with pgvector
+- **`config.py`**: Configuration management and environment variables
+
+### **Data Flow**
+
+1. **Document Input** → Text extraction (PDF/DOCX)
+2. **Text Chunking** → Strategy-based splitting
+3. **Embedding Generation** → Gemini API processing
+4. **Vector Storage** → PostgreSQL with pgvector
+5. **Semantic Search** → Cosine similarity matching
+6. **Result Ranking** → Top-k most similar chunks
+
+## 🗄️ **Database Schema**
+
+```sql
+CREATE TABLE document_embeddings (
+    id SERIAL PRIMARY KEY,                    -- Unique identifier
+    chunk_text TEXT NOT NULL,                 -- Text content
+    embedding vector(768) NOT NULL,           -- Gemini embedding vector
+    file_name VARCHAR(255) NOT NULL,          -- Source filename
+    split_strategy VARCHAR(100) NOT NULL,     -- Chunking method used
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Creation timestamp
+    chunk_index INTEGER,                      -- Position in document
+    total_chunks INTEGER,                     -- Total chunks in document
+    metadata JSONB                            -- Additional information
+);
+```
+
+**Field Descriptions:**
+- `id`: Unique identifier for each chunk
+- `chunk_text`: The actual text content
+- `embedding`: 768-dimensional vector from Gemini
+- `file_name`: Source document name
+- `split_strategy`: Chunking method (fixed-size, sentence, paragraph)
+- `created_at`: When the chunk was indexed
+- `chunk_index`: Position of chunk in the document
+- `total_chunks`: Total number of chunks in the document
+- `metadata`: Additional information in JSON format
+
+## 🔍 **Search Capabilities**
+
+### **Semantic Search**
+- **Query Embedding**: Uses Gemini API to convert search queries to vectors
+- **Cosine Similarity**: Finds most similar chunks using pgvector
+- **Configurable Results**: Set number of results and similarity threshold
+- **Metadata Filtering**: Filter by source file, chunk position, etc.
+
+### **Search Examples**
+```bash
+# Basic search
+python main.py --search "artificial intelligence"
+
+# Search with custom parameters
+python main.py --search "machine learning" --results 10
+
+# Search in specific file
+python main.py --search "neural networks" --source-file document.pdf
+```
+
+## 🛡️ **Security Features**
+
+### **Environment Variable Management**
+- **Template-based**: `env_template.env` contains placeholders only
+- **No Secrets in Code**: All sensitive data in `.env` file
+- **Git-safe**: Template can be committed without exposing credentials
+
+### **Best Practices**
+- **Never commit `.env` files** to version control
+- **Use strong, unique passwords** for database
+- **Rotate API keys** regularly
+- **Keep `env_template.env`** as a template only
+
+## 📊 **Performance & Scalability**
+
+### **Vector Operations**
+- **pgvector Extension**: Optimized for vector similarity search
+- **Indexing**: Automatic vector indexing for fast queries
+- **Batch Operations**: Efficient bulk insertion of embeddings
+
+### **Memory Management**
+- **Streaming Processing**: Large documents processed in chunks
+- **Configurable Chunk Sizes**: Balance between memory and accuracy
+- **Overlap Management**: Maintains context between chunks
+
+## 🔧 **Configuration Options**
+
+### **Chunking Parameters**
+```bash
+# Fixed-size chunking
+--chunk-size 1000      # Maximum characters per chunk
+--overlap 200          # Overlap between chunks
+
+# Natural chunking (sentence/paragraph)
+--chunk-strategy sentence    # No size limits
+--chunk-strategy paragraph   # No size limits
+```
+
+### **Search Parameters**
+```bash
+--results 5                    # Number of results to return
+--threshold 0.5               # Minimum similarity score
+--verbose                     # Detailed output
+```
+
+## 🐛 **Troubleshooting**
+
+### **Common Issues**
+
+1. **PostgreSQL Connection Error**
+   ```bash
+   # Check if PostgreSQL is running
+   brew services list | grep postgresql
+   
+   # Verify connection details in .env
+   python main.py --check-system
+   ```
+
+2. **Gemini API Error**
+   ```bash
+   # Verify API key in .env
+   # Check API quota at https://makersuite.google.com/app/apikey
+   ```
+
+3. **pgvector Extension Error**
+   ```sql
+   -- Install pgvector extension
+   CREATE EXTENSION IF NOT EXISTS vector;
+   ```
+
+### **Debug Mode**
+```bash
+# Enable verbose logging
+python main.py --search "query" --verbose
+
+# Check system requirements
+python main.py --check-system
+```
+
+## 📚 **API Usage**
+
+### **Programmatic Interface**
+```python
+from index_documents import DocumentIndexer
+from search_documents import DocumentSearcher
+
+# Index documents
+indexer = DocumentIndexer()
+indexer.index_document("document.pdf", chunk_strategy="sentence")
+
+# Search documents
+searcher = DocumentSearcher()
+results = searcher.search_documents("your query")
+```
+
+### **Batch Operations**
+```python
+# Index multiple documents
+files = ["doc1.pdf", "doc2.pdf", "doc3.pdf"]
+for file in files:
+    indexer.index_document(file, chunk_strategy="paragraph")
+```
+
+## 🤝 **Contributing**
+
+### **Development Setup**
+```bash
+# Clone repository
+git clone <your-repo>
+cd ragPythonModule
+
+# Install development dependencies
+pip install -r requirements.txt
+
+# Run tests
+python -m pytest tests/
+```
+
+### **Code Style**
+- Follow PEP 8 guidelines
+- Use type hints
+- Add docstrings for all functions
+- Include error handling
+
+## 📄 **License**
+>>>>>>> Stashed changes
 
 - `__init__(api_key=None, model_name=None)`
   - Initialize the indexer (uses config defaults if parameters are None)
@@ -368,12 +696,21 @@ The main class for indexing documents using Gemini embeddings and PostgreSQL.
 - `delete_document(file_name)`
   - Delete all embeddings for a specific document
 
+<<<<<<< Updated upstream
 ### DocumentSearcher Class
 
 The main class for searching documents using Gemini embeddings and PostgreSQL.
+=======
+## 🙏 **Acknowledgments**
+
+- **Google Gemini API** for powerful text embeddings
+- **PostgreSQL** and **pgvector** for efficient vector storage
+- **Python community** for excellent libraries and tools
+>>>>>>> Stashed changes
 
 #### Methods
 
+<<<<<<< Updated upstream
 - `__init__(api_key=None, model_name=None)`
   - Initialize the searcher (uses config defaults if parameters are None)
   
@@ -566,3 +903,6 @@ Feel free to submit issues, feature requests, or pull requests to improve this m
 ## License
 
 This module is provided as-is for educational and development purposes.
+=======
+**Need Help?** Run `python main.py --interactive` for guided assistance!
+>>>>>>> Stashed changes
