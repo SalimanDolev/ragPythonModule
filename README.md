@@ -25,9 +25,9 @@ POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
 ```
 
 ### 3. **Database Setup**
-```sql
-CREATE DATABASE your_database_name;
-CREATE EXTENSION IF NOT EXISTS vector;
+```bash
+# Ensure PostgreSQL is running and create a database
+# The pgvector extension will be automatically installed when needed
 ```
 
 ## 📖 **Usage**
