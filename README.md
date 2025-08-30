@@ -1,11 +1,19 @@
 # RAG Python Module with Gemini API and PostgreSQL
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 A **Retrieval Augmented Generation (RAG)** system that combines Google's Gemini AI with PostgreSQL for efficient document indexing and semantic search.
 
 ## 🚀 **Installation**
 
 ### 1. **Clone and Install Dependencies**
+=======
+A powerful **Retrieval Augmented Generation (RAG)** system that combines Google's Gemini AI with PostgreSQL and pgvector for efficient document indexing and semantic search.
+
+## 🚀 **Installation**
+
+### 1. **Clone and Install**
+>>>>>>> Stashed changes
 =======
 A powerful **Retrieval Augmented Generation (RAG)** system that combines Google's Gemini AI with PostgreSQL and pgvector for efficient document indexing and semantic search.
 
@@ -29,12 +37,15 @@ nano .env
 **Required in `.env`:**
 ```bash
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 GEMINI_API_KEY=your_actual_api_key_here
 POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
 ```
 
 ### 3. **Database Setup**
 =======
+=======
+>>>>>>> Stashed changes
 GOOGLE_API_KEY=your_actual_api_key_here
 POSTGRES_HOST=localhost
 POSTGRES_DB=your_database_name
@@ -57,6 +68,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 ## 📖 **Usage**
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 ### **Core Scripts**
 
@@ -94,6 +106,8 @@ python search_documents.py "your query"
 - **Sentence-based**: Natural sentence boundaries (no size limits)
 - **Paragraph-based**: Natural paragraph boundaries (no size limits)
 =======
+=======
+>>>>>>> Stashed changes
 ### **Interactive Mode (Recommended)**
 ```bash
 python main.py --interactive
@@ -118,11 +132,15 @@ python main.py --delete-file filename.pdf
 - **Fixed-size**: `--chunk-strategy fixed-size --chunk-size 1000 --overlap 200`
 - **Sentence-based**: `--chunk-strategy sentence` (no size limits)
 - **Paragraph-based**: `--chunk-strategy paragraph` (no size limits)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 ## 💡 **Examples**
 
 ### **Basic Workflow**
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 ```bash
 # 1. Index a PDF document
@@ -182,6 +200,8 @@ POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
 
 **Need Help?** Run any script with `--help` flag for detailed usage information!
 =======
+=======
+>>>>>>> Stashed changes
 ```python
 from index_documents import DocumentIndexer
 from search_documents import DocumentSearcher
@@ -220,4 +240,3 @@ print(f"Unique files: {stats['unique_sources']}")
 ---
 
 **Need Help?** Run `python main.py --interactive` for guided assistance!
->>>>>>> Stashed changes
