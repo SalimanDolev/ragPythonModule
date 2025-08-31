@@ -105,13 +105,6 @@ python search_documents.py "neural networks and deep learning"
 
 ## 🔧 **Configuration**
 
-### **Environment Variables**
-```bash
-# Required
-GEMINI_API_KEY=your_gemini_api_key
-POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
-```
-
 ### **Default Settings**
 - **Chunk Strategy**: `fixed-size`
 - **Chunk Size**: `1000` characters
