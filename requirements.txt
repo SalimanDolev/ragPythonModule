@@ -1,3 +1,6 @@
+# Pre-install grpcio with pre-compiled wheel for faster installation
+grpcio --only-binary=grpcio
+
 # Core document processing
 PyPDF2==3.0.1
 python-docx==0.8.11
