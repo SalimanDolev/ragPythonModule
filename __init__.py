@@ -13,25 +13,12 @@ Measures semantic closeness between text vectors (-1 to 1, where 1 = identical m
 Enables intelligent search beyond keyword matching.
 
 Usage:
-    from ragPythonModule import index_document, search_documents
-    index_document("doc.pdf", chunk_strategy="sentence")
-    results = search_documents("your query")
-"""
+This module provides two main scripts:
+- index_documents.py: Document indexing with multiple chunking strategies
+- search_documents.py: Semantic search using Gemini embeddings
 
-from .index_documents import index_document, DocumentIndexer
-from .search_documents import search_documents, DocumentSearcher
-from .config import Config, get_config
-from .database import DatabaseManager
+For usage examples, see the README.md file.
+"""
 
 __version__ = "1.0.0"
 __author__ = "RAG Module Developer"
-
-__all__ = [
-    "index_document", 
-    "search_documents", 
-    "DocumentIndexer", 
-    "DocumentSearcher",
-    "Config",
-    "get_config",
-    "DatabaseManager"
-]
